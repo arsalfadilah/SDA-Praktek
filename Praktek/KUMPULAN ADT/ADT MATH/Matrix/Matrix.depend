@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1621857071 source:e:\arsal\materi kuliah\struktur data dan algoritma\praktek\kumpulan adt\adt math\matrix\main.c
+	<stdio.h>
+	<stdlib.h>
+	"matrix.h"
+
+1621857163 e:\arsal\materi kuliah\struktur data dan algoritma\praktek\kumpulan adt\adt math\matrix\matrix.h
+	<stdio.h>
+	<stdbool.h>
+

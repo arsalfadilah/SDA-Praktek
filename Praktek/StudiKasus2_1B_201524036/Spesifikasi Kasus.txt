@@ -1,0 +1,3 @@
+/* Spesifikasi Kasus Vektor Sederhana*/
+Didin seorang mahasiswa yang sangat kesulitan dalam belajar matematika. Namu, dia suka menggunakan bahasa pemrograman terutama bahasa C. Oleh karena itu, ia memiliki ide untuk mwncoba membuat perintah perintah vektor sederhana di bahasa C. Mulai dari penjumlahan , pengurangan , perkalian vektor dengan skalar dan mengetahui vektor satuan.
+Didin hanya perlu memasukan inputan untuk vektor 1, vektor 2, dan skalar, maka otomatis proses/operasi terhadap vektor akan muncul ke layar.
