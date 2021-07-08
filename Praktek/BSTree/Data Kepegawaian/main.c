@@ -24,12 +24,19 @@ int main(){
             case 4:
                 searchDataKepegawaian(DataKepegawaian);
                 break;
+            case 0:
+                printf("[Menghapus semua hasil alokasi data]\n");
+                break;
         default:
+            printf("Mohon maaf opsi menu salah, silahkan ulangi lagi!\n");
             break;
         }
         printf("\n");
         system("pause");
 	    system("cls");
     }
+    //delete all
+    deleteAllDataKepegawaian(&DataKepegawaian.Root ,&DataKepegawaian.Root);
+    printf("See u Later :)\n");
     return 0;
 }

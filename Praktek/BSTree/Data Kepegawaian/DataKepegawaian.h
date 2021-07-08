@@ -42,6 +42,8 @@ bool isEquals(int ID_1, int ID_2);
 infotype insertInfoType();
 //search succesor dari P
 address succesor(address DataKepegawaian);
+//delete all
+void deleteAllDataKepegawaian(address *Root, address *DataKepegawaian);
 
 /*==== Method Fitur Apps ====*/
 int home();

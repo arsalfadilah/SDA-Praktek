@@ -13,15 +13,19 @@ void insertDataPegawai(address *DataKepegawaian, infotype infoDataPegawai)
 {
 	if(isEmpty(*DataKepegawaian)){
 		(*DataKepegawaian) = AlokasiDataPegawai(infoDataPegawai);
+		if(!isEmpty(*DataKepegawaian))
+			printf("Penambahan berhasil ditambahkan!\n");
 		return;
 	}
 
 	if(isEquals((*DataKepegawaian)->info.id, infoDataPegawai.id)){
-		printf("duh ga bisa sama ID-nya");
+		printf("ID : %d telah ada. Mohon input ulang\n", infoDataPegawai.id);
 		return;
 	} else if((*DataKepegawaian)->info.id > infoDataPegawai.id){
 		if(isEmpty((*DataKepegawaian)->left)){
 			(*DataKepegawaian)->left = AlokasiDataPegawai(infoDataPegawai);
+			if(!isEmpty(*DataKepegawaian))
+				printf("Penambahan berhasil ditambahkan!\n");
 			return;
 		}else {
 			insertDataPegawai(&(*DataKepegawaian)->left, infoDataPegawai);
@@ -29,6 +33,8 @@ void insertDataPegawai(address *DataKepegawaian, infotype infoDataPegawai)
 	} else{
 		if(isEmpty((*DataKepegawaian)->right)){
 			(*DataKepegawaian)->right = AlokasiDataPegawai(infoDataPegawai);
+			if(!isEmpty(*DataKepegawaian))
+				printf("Penambahan berhasil ditambahkan!\n");
 			return;
 		}else {
 			insertDataPegawai(&(*DataKepegawaian)->right, infoDataPegawai);
@@ -39,12 +45,12 @@ void insertDataPegawai(address *DataKepegawaian, infotype infoDataPegawai)
 void deleteDataPegawai(address *DataKepegawaian, infotype infoDataPegawai){
 	address temp;
 	if(isEmpty(*DataKepegawaian)){
-		printf("yah gak ada bos ID-nya");
+		printf("Maaf ID : %d tidak ditemukan\n", infoDataPegawai.id);
 		return;
 	}
 
 	if(isEquals((*DataKepegawaian)->info.id, infoDataPegawai.id)){
-		printf("yes ketemu sebentar . . .");
+		printf("Yes ketemu ID : %d untuk dihapus, tunggu sebentar . . .\n", infoDataPegawai.id);
 		if(isEmpty((*DataKepegawaian)->left) && isEmpty((*DataKepegawaian)->right)){
 			DealokasiDataPegawai(&(*DataKepegawaian));
 		}else if(isEmpty((*DataKepegawaian)->left) || isEmpty((*DataKepegawaian)->right)){
@@ -63,6 +69,7 @@ void deleteDataPegawai(address *DataKepegawaian, infotype infoDataPegawai){
 				DealokasiDataPegawai(&temp);
 			}	
 		}
+		printf("Berhasil menghapus ID : %d!\n", infoDataPegawai.id);
 	} else if((*DataKepegawaian)->info.id > infoDataPegawai.id){
 		deleteDataPegawai(&(*DataKepegawaian)->left, infoDataPegawai);
 	} else{
@@ -88,7 +95,7 @@ address searchDataPegawai(address DataKepegawaian, infotype infoDataPegawai){
 //menampilkan seluruh data secara in-order
 void printDataKepegawaianInOrder(address DataKepegawaian){
 	if(DataKepegawaian == NULL){
-		printf("NULL\n");
+		printf("Data Pegawai Kosong!\n");
 		return;
 	}
 	printInOrder(DataKepegawaian);
@@ -100,8 +107,6 @@ void printInOrder(address DataKepegawaian){
         printf("%d %s\n", DataKepegawaian->info.id, DataKepegawaian->info.nama);
         printInOrder(DataKepegawaian->right);
     }
-
-	printf("\n");
 }
 //Alokasi Data Kepegawaian
 address AlokasiDataPegawai(infotype infoDataKepegawaian){
@@ -154,6 +159,17 @@ address succesor(address P){
 		return succesor(P->left);
 	}
 }
+//delete all data
+void deleteAllDataKepegawaian(address *Root, address *DataKepegawaian){
+	//dapatkan infotype dengan in-order
+	if(!isEmpty(*DataKepegawaian)){
+		deleteAllDataKepegawaian(&(*Root), &(*DataKepegawaian)->left);
+		deleteDataPegawai(&(*Root), (*DataKepegawaian)->info);
+		deleteAllDataKepegawaian(&(*Root), &(*DataKepegawaian)->right);
+	}
+	system("pause");
+	system("cls");
+}
 
 /*==== Method Fitur Apps ==== */
 int home(){
@@ -195,6 +211,6 @@ void searchDataKepegawaian(BSTree DataKepegawaian){
 		printf("tidak ada");
 	} else {
 		//yee ada
-		printf("ada");
+		printf("ID   : %d\nNama : %s\n", search->info.id, search->info.nama);
 	}
 }
